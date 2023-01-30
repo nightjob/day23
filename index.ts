@@ -71,4 +71,13 @@ app.post("/message", function (req, res) {
   res.send(message);
 });
 
+// put route
+app.put("message/:messageNumber", function (req, res) {
+  const index: number = parseInt(req.params.messageNumber);
+  const originalMessage = messages[index];
+  messages[index].message = req.body.updatedMessage;
+  messages[index].edited = true;
+  res.send(messages);
+});
+
 app.listen(3001);
