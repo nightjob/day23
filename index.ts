@@ -7,10 +7,12 @@ const messages: Message[] = [];
 const app = express();
 
 let messageNumber: number = 0;
+let userMessages: Message[] = [];
 
 app.use(express.json());
 
 // find user
+// tested: works
 app.get("/user/:name", function (req, res) {
   const user = users.find((u) => u.name === req.params.name);
   if (user) {
@@ -21,6 +23,7 @@ app.get("/user/:name", function (req, res) {
 });
 
 // make user
+// tested: works
 app.post("/user", function (req, res) {
   let dateTime = new Date();
   console.log(dateTime);
@@ -36,7 +39,25 @@ app.post("/user", function (req, res) {
   res.send(user);
 });
 
+// find message by user
+// tested: works
+app.get("/message/:name", function (req, res) {
+  const user = users.find((u) => u.name === req.params.name);
+  userMessages = [];
+  if (user) {
+    messages.forEach((m) => {
+      if (m.user === req.params.name) {
+        userMessages.push(m);
+      }
+    });
+    res.send(userMessages);
+  } else {
+    res.send({});
+  }
+});
+
 // make message
+// tested: works
 app.post("/message", function (req, res) {
   const message: Message = {
     message: req.body.message,

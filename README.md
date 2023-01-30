@@ -9,15 +9,32 @@ http://localhost:3001/user
 "createdAt": ,
 }
 
+ex:
+
+{
+"name": "Niel",
+"isAdmin": false,
+"roles": ["GMI", "CM"]
+}
+
 # tested : will make date time for you without input
 
 type Message = {
-message: string;
-user: string;
-keks: number;
-edited: boolean;
-messageID: number;
+"message": string;
+"user": string;
+"keks": number;
+"edited": boolean;
+"messageID": number;
 };
+
+ex:
+
+{
+"message": "hello",
+"user": "Niel",
+"keks": 3,
+"editied": false
+}
 
 1. Create a new express server that has a route for creating
 
